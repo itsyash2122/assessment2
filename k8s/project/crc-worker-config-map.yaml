@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: court-record-check-worker-dev-config-map
+data:
+  Key: Value
+  

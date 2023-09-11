@@ -1,0 +1,143 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "court-record-check-worker-dev-deployment"
+  labels:
+    app: "court-record-check-worker-dev-deployment"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "court-record-check-worker-dev-deployment"
+  template:
+    metadata:
+      labels:
+        app: "court-record-check-worker-dev-deployment"
+    spec:
+      containers:
+      - name: "court-record-check-worker-dev-deployment"
+        image: 372004264077.dkr.ecr.ap-south-1.amazonaws.com/betterplace/crc-worker:dev
+        imagePullPolicy: "Always"
+        ports:
+          - containerPort: 8080
+        env:
+        - name: notify_token
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: notify_token
+        - name: notify_url
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: notify_url
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: AWS_SECRET_KEY
+        - name: NAME_WEIGHT
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: name_weight
+        - name: RELATIVE_WEIGHT
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: relative_weight
+        - name: AWS_bucket_name
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: AWS_bucket_name
+        - name: JSON_DIR
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: json_dir
+        - name: HTML_DIR
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: html_dir
+        - name: SCREENSHOT_DIR
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: screenshot_dir
+        - name: ORDER_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: order_key
+        - name: CLOUD_ID
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: CLOUD_ID
+        - name: API_ID
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: API_ID
+        - name: API_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: API_KEY
+        - name: DB_STRING
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: DB_STRING
+        - name: INDEX_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: INDEX_NAME
+        - name: DETAILS_QUEUE
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: DETAILS_QUEUE
+        - name: cnr_fir_idx
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: cnr_fir_idx
+        - name: cnr_fir_pincode
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: cnr_fir_pincode
+        - name: court_pincode
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: court_pincode
+        - name: cnr_request_queue
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: cnr_request_queue
+        - name: cnr_request_status
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: cnr_request_status
+        - name: cnr_request_report
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: cnr_request_report
+        - name: cnr_request_result
+          valueFrom:
+            configMapKeyRef:
+              name: court-record-check-worker-dev-config-map
+              key: cnr_request_result
